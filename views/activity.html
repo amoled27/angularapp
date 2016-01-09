@@ -1,0 +1,23 @@
+<head>
+	
+</head>
+<body>
+	<!-- <div ng-app="formApp" ng-controller="mainCtrl"> -->
+		<div ng-repeat="activity in activities">
+    <input type="checkbox" ng-click="actTrue(activity)"></input>
+      {{activity.name}}
+     
+    </div>
+      
+
+
+      <form ng-submit="addAct()">
+      <input type="text" ng-model="name"></input>
+        <button type="submit">add</button>
+
+      </form>
+
+      <button ui-sref="">j</button>
+
+	<!-- </div> -->
+</body>
