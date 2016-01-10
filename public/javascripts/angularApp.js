@@ -70,7 +70,7 @@ function($stateProvider, $urlRouterProvider){
 
 	})
 	.state('signup',{
-		url: '/signup.html',
+		url: '/signup',
 		templateUrl: './views/signup.html'
 
 	})
