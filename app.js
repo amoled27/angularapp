@@ -8,10 +8,6 @@ var hbs = require('hbs');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var activity = require('./routes/activity');
-
 var app = express();
 
 // view engine setup
@@ -27,19 +23,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./config/dbConnection');
+require('./config/passport'); //requiring passport.js file 
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var activity = require('./routes/activity');
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/activity',activity);
 
-
-require('./models/Activity');
-//mongoose server settings
-var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/tourism'); 
-mongoose.connection.on('error',function(){
-  console.error('MongoDB server not connected');
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,8 +42,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-//requiring passport.js file 
-require('./config/passport')(passport);
+
 //settings for passport package
 // app.use(session({secret: 'yayayhappynewyear'}));
 app.use(passport.initialize());
@@ -82,4 +75,10 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-app.listen(3000);
+app.listen(3000, function (err) {
+  if(err) {
+    console.log('Server not started');
+  } else {
+    console.log('Server running successfully.');
+  }
+});
