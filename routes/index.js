@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Activity = require('../models/Activity');
+var passport = require('passport');
 // var Activity = mongoose.model('Activity');
 
 /* GET home page. */
@@ -40,6 +41,25 @@ router.param('activity', function(req, res, next, id) {
 router.get('/activity/:activity',function(req,res){
 	res.json(req.post);
 });
+
+router.get('/login',function(req,res){
+		res.render('login')
+	});
+router.get('/signup' ,function(req,res){
+		res.render('signup');
+	});
+router.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup' // redirect back to the signup page if there is an error
+     
+    }));
+
+router.post('/login',passport.authenticate('local-login',{
+      	successRedirect : '/profile',
+      	failureRedirect : '/login'
+      }));
+
+    
 
 
 

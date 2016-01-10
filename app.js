@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -46,6 +47,14 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+//requiring passport.js file 
+require('./config/passport')(passport);
+//settings for passport package
+// app.use(session({secret: 'yayayhappynewyear'}));
+app.use(passport.initialize());
+app.use(passport.session()); //passport session initialization 
+
 
 // error handlers
 

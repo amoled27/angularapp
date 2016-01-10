@@ -5,6 +5,17 @@
 </head>
 <body>
 Login page rendered
+
+<form method="post" action="/login" >
+
+
+     <label for="email">Email</label>
+    <input type="email" class="form-control" name="email" ng-model="email">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" ng-model="password">
+
+    <a ui-sref="activity">next</a>
+ </form>
 <button ui-sref="activity">activity</button>
 </body>
 </html>
