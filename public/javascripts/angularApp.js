@@ -5,7 +5,7 @@ app.factory('activities', ['$http',function($http){
   var o = {
   	activities : []
   };
-  return o;
+  
 
     o.getAll = function() {
     return $http.get('/activity').success(function(data){
@@ -18,6 +18,7 @@ app.factory('activities', ['$http',function($http){
   			o.activities.push(data)
   		})
   	}
+  	return o;
 
 }]);
 
@@ -31,7 +32,7 @@ function($scope,activities){
 
 //acctivities added 
 $scope.addAct = function(){
-	$scope.activities.push({name:$scope.name, status: 0}); //this is just rendering in front
+
 	activities.create({name:$scope.name, status: 0}) // this is inserting in DB which should work but isnt
 };
 
