@@ -1,0 +1,11 @@
+#leftpane{
+    background-color: #90a4ae;
+    height: 500px;
+}
+#leftpane-text-header{
+    height: 35px;
+    width: 80%;
+    background-color: rgba(255,255,255,0.15);
+    display: block;
+    margin: 27px auto;
+}
